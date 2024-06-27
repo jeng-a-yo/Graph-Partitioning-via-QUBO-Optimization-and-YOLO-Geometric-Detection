@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project integrates the QUBO (Quadratic Unconstrained Binary Optimization) formulation with the YOLO (You Only Look Once) object detection algorithm to tackle the graph partitioning problem. The aim is to automate the process of analyzing images depicting connected graphs, extracting accurate adjacency matrices using YOLO, and utilizing QUBO solutions to determine the optimal partitioning strategy.
+This project integrates QUBO (Quadratic Unconstrained Binary Optimization) with YOLO (You Only Look Once) object detection to automate graph partitioning. It analyzes images of connected graphs, extracts adjacency matrices using YOLO, and applies QUBO solutions for optimal partitioning.
 
 ## Table of Contents
 
@@ -19,39 +19,40 @@ This project integrates the QUBO (Quadratic Unconstrained Binary Optimization) f
 
 ## Introduction
 
-Graph partitioning is pivotal across various domains, including parallel computing and network design. This project leverages QUBO to optimize partitioning and enhances it by integrating YOLO for robust object detection in graph images. The approach not only automates adjacency matrix generation but also optimizes partitioning strategies based on graph complexity and connectivity.
+Graph partitioning is essential in parallel computing and network design. This project enhances QUBO with YOLO for robust graph analysis, automating adjacency matrix generation and optimizing partitioning strategies based on graph complexity and connectivity.
 
 ## Features
 
 - **Automated Graph Analysis**: Generate and analyze connected graph images automatically.
-- **Object Detection with YOLO**: Utilize YOLO for accurate node and edge detection in graph images.
-- **Optimized Partitioning**: Apply QUBO formulations to optimize graph partitioning strategies.
-- **Scalability and Flexibility**: Configurable parameters for varying graph complexities and optimization requirements.
+- **Object Detection with YOLO**: Accurately detect nodes and edges using YOLO.
+- **Optimized Partitioning**: Apply QUBO formulations for efficient graph partitioning.
+- **Scalability and Flexibility**: Configurable parameters for varying graph complexities.
 
 ### Prerequisites
 
 - Python 3.7+
-- `numpy`, `Pillow`, `yolov5`, `pyqubo`, `networkx`
+- Required libraries: `numpy`, `Pillow`, `yolov5`, `pyqubo`, `networkx`
 - GPU support for efficient YOLO inference
 
 ## Integration Details
 
 ### YOLO Integration
 
-1. **Model Training**: Train the YOLO model on a dataset of graph images to detect nodes and edges.
-2. **Detection**: Use the trained YOLO model to detect graph components in new images.
+1. **Model Training**: Train YOLO on a dataset of graph images for node and edge detection.
+2. **Detection**: Use YOLO to detect graph components in new images.
 
 ### QUBO Formulation
 
-1. **Problem Formulation**: Formulate the QUBO problem based on the adjacency matrix derived from YOLO.
-2. **Optimization**: Solve the QUBO problem to determine the optimal partitioning of the graph.
+1. **Problem Formulation**: Formulate QUBO problems based on YOLO-generated adjacency matrices.
+2. **Optimization**: Solve QUBO to determine optimal graph partitioning.
 
 ## Directory Structure
 
 ```bash
 qubo-graph-partitioning-yolo/
-├── yolov5/                  # YOLO model implementation directory
-├── main.py                  # Main script for integration and partitioning
-├── requirements.txt         # Dependencies list
-└── README.md                # Project documentation
+├── yolov5/                     # YOLO model implementation
+├── main.py                     # Main script for integration and partitioning
+├── requirements.txt            # Dependencies list
+├── generate_connected_graphs.py # Script for generating connected graph images
+└── README.md                   # Project documentation
 ```
