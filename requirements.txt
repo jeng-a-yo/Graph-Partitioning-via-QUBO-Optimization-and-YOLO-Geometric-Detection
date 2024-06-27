@@ -1,0 +1,5 @@
+numpy
+Pillow
+yolov5
+pyqubo
+networkx
