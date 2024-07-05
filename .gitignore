@@ -1,2 +1,5 @@
 *.npy
 *.png
+*.pth
+*.pyc
+test.py
