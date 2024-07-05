@@ -6,7 +6,6 @@ from PIL import Image, ImageDraw
 from random import uniform, sample
 from collections import deque
 
-
 np.set_printoptions(threshold=sys.maxsize)
 
 # Define colors
@@ -92,8 +91,11 @@ def is_connected(adjacency_matrix):
 @count_time
 def main(num_images=1, points_quantity=25, image_width=800, image_length=800, edge=20, point_radius=130, 
          dots_distance_threshold=50, connect_quantity=2, unit_vector_length=8, 
-         images_path="images", matrices_path="adjacency_matrices"):
+         base_path="dataset"):
     """Main function to generate points, adjacency matrix, and save the image."""
+    images_path = os.path.join(base_path, "images")
+    matrices_path = os.path.join(base_path, "adjacency_matrices")
+
     os.makedirs(images_path, exist_ok=True)
     os.makedirs(matrices_path, exist_ok=True)
 
