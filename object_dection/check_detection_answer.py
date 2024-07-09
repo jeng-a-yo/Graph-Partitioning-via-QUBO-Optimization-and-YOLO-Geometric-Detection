@@ -50,6 +50,6 @@ if __name__ == "__main__":
         print(e)
 
 
-# print(pred_matrix)
-# print('============================================================')
-# print(correct_matrix)
+print(predicted_matrix)
+print('============================================================')
+print(correct_matrix)
