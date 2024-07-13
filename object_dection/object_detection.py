@@ -1,11 +1,30 @@
 import cv2
 import numpy as np
+import math
+from sklearn.cluster import DBSCAN
 from scipy.spatial.distance import pdist, squareform
 
 BLUE = (255, 0, 0)
 GREEN = (0, 255, 0)
 RED = (0, 0, 255)
+YELLOW = (0 ,255, 255)
 
+dots_distance_threshold = 50
+
+def distance(point1, point2):
+    """Calculate the Euclidean distance between two points."""
+    return math.sqrt((point1[0] - point2[0])**2 + (point1[1] - point2[1])**2)
+
+def remove_far_nodes(nodes, threshold):
+    """Remove nodes that are farther apart than the threshold distance."""
+    pop_index_list = []
+    for i in range(len(nodes)):
+        for j in range(i + 1, len(nodes)):
+            if distance(nodes[i], nodes[j]) < threshold:
+                pop_index_list.append(i)
+    for i in pop_index_list:
+        nodes.pop(i)
+    return nodes
 
 def detect_nodes_and_adjacency(image_path):
     # Read the image
@@ -38,9 +57,11 @@ def detect_nodes_and_adjacency(image_path):
                 nodes.append((cX, cY))
     
     # Remove duplicate nodes (if any)
-    nodes = list(set(nodes))
+    nodes = sorted(list(set(nodes)))
+    # nodes = remove_far_nodes(sorted(list(set(nodes))), dots_distance_threshold)
     
     print(f"Number of nodes detected: {len(nodes)}")
+
     
     # Create a visualization image
     vis_img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
@@ -48,6 +69,7 @@ def detect_nodes_and_adjacency(image_path):
     # Draw detected nodes
     for (x, y) in nodes:
         cv2.circle(vis_img, (x, y), 5, RED, 2)
+
     
     # Create adjacency matrix
     n = len(nodes)
@@ -69,8 +91,10 @@ def detect_nodes_and_adjacency(image_path):
     
     return adj_matrix
 
-# Usage
-image_path = 'image_0.png'
+
+
+
+image_path = 'image_8.png'
 try:
     adjacency_matrix = detect_nodes_and_adjacency(image_path)
     np.save('predict_matrix.npy', adjacency_matrix)
